@@ -5,7 +5,7 @@
 
 Official benchmarking code and digital twin simulation environment for the IEEE research manuscript:
 
-**"AI-Enhanced Data Driven Hybrid Economic Model Predictive Control with LSTM Forecasting and PID Supervision for Secure, Cost and Carbon Optimal Data Center Cooling."**
+**"AI-Enhanced Hybrid EMPC for Secure, Cost and Carbon Optimal Data Center Cooling."**
 
 ---
 
@@ -196,7 +196,7 @@ If you use this benchmarking suite, codebase, or results in your research, pleas
 
 ```bibtex
 @article{doula2026datacoolingbenchmarks,
-  title={AI-Enhanced Data Driven Hybrid Economic Model Predictive Control with LSTM Forecasting and PID Supervision for Secure, Cost and Carbon Optimal Data Center Cooling},
+  title={AI-Enhanced Hybrid EMPC for Secure, Cost and Carbon Optimal Data Center Cooling},
   author={Doula, Imam Ud and Rahman, Adrita and Fatima, Samiha},
   journal={IEEE Transactions on Sustainable Computing (Under Review)},
   year={2026}

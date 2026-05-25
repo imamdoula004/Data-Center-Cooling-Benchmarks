@@ -198,7 +198,7 @@ If you use this benchmarking suite, codebase, or results in your research, pleas
 @article{doula2026datacoolingbenchmarks,
   title={AI-Enhanced Hybrid EMPC for Secure, Cost and Carbon Optimal Data Center Cooling},
   author={Doula, Imam Ud and Rahman, Adrita and Fatima, Samiha},
-  journal={IEEE Transactions on Sustainable Computing (Under Review)},
+  journal={IEEE Conference (To Be Updated)},
   year={2026}
 }
 ```

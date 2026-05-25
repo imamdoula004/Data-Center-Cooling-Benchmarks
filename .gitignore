@@ -68,6 +68,10 @@ kaggle (1).json
 .kaggle/
 cons/
 
+figures/
+Diagrams/
+
 # OS-specific
 .DS_Store
 Thumbs.db
+

@@ -142,59 +142,15 @@ $$a_t = a_t^{\text{sustained}} + a_t^{\text{burst}} + a_t^{\text{state}}$$
 
 ---
 
-## 🏆 Key Performance Indicators (KPIs)
+## 🏆 Benchmarking & Evaluation Metrics
 
-The performance of each controller was validated over a **7-day (168-hour) continuous multi-seed simulation** under a sustained cyber-physical False Data Injection (FDI) attack (occurring between steps 30 and 120).
-
-The table below presents the final raw benchmarking results:
-
-| Metric | PID | MPC | EMPC | ROBUST | HYBRID (Proposed) |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Energy Consumption (kWh)** | 326.22 | 341.38 | 334.00 | 329.19 | **168.00** *(–50.8%)* |
-| **Operational Cost ($)** | 53.67 | 55.41 | 55.41 | 53.88 | **28.24** *(–49.0%)* |
-| **Scope 2 Carbon (kg CO₂)** | 64.69 | 66.63 | 66.33 | 66.17 | **33.81** *(–49.2%)* |
-| **Mean Lyapunov Stability $\langle V(T) \rangle$** | $3.38 \times 10^6$ | $8.29 \times 10^2$ | $6.53 \times 10^2$ | **$7.36 \times 10^2$** | $2.57 \times 10^5$ |
-| **Average Temperature (°C)** | 400.84 | 22.01 | 20.88 | 21.41 | 129.09 |
-| **Temperature Std. Dev. (°C)** | 607.48 | 5.94 | 5.10 | 5.65 | 163.05 |
-| **Computation Time (s)** | **21.88** | **16.18** | 16.90 | 16.99 | 31.63 |
-
-> [!NOTE]
-> Under adversarial FDI attacks, the classical **PID controller loses stability**, resulting in thermal runaway ($\langle T \rangle \approx 400.8^\circ\text{C}$). The **HYBRID controller** drastically reduces energy consumption (by over 50%) by exploiting predictive optimization and dampening control actions during peak thermal disturbances, demonstrating a major cost-efficiency trade-off under intense cyber-physical stress.
-
----
-
-## 📊 Visual Benchmarks & Performance Analysis
-
-### 1. Tri-Objective Cost and Carbon Savings
-The HYBRID controller achieves significant reductions in energy consumption, electricity costs, and carbon emissions compared to standard tracking controllers.
-
-![Tri-Objective KPI Comparison](figures/kpi_tri_objective_comparison.png)
-
-### 2. Multi-Zone Temperature Trajectories
-This plot tracks temperature profiles across 5 heterogeneous server zones. While MPC and EMPC maintain tight regulation, the HYBRID controller leverages adaptive dampening to balance cooling costs under stress.
-
-![Zone Temperature Trajectories](figures/temperature_trajectories.png)
-
-### 3. Lyapunov Stability Evolution
-We track the Lyapunov energy function $V(T)$ to analyze controller convergence and stability. Under FDI attacks, the classical PID controller suffers complete feedback loop breakdown, while the predictive models preserve stability.
-
-![Lyapunov Stability Evolution](figures/lyapunov_stability_evolution.png)
-
-### 4. Deep Learning Disturbance Forecasting
-A comparison of the Bidirectional LSTM forecast predictions against true disturbance telemetry over the receding horizon.
-
-![LSTM Forecast vs Actual](figures/forecast_vs_actual_temp.png)
-
-### 5. Multi-Criteria Objective Weighting
-The benchmarking framework maps the objective trade-offs and interdependencies between energy efficiency, thermal comfort, security risk, and computation time.
-
-![KPI Weights & Interdependencies](figures/kpi_weights_and_interdependency.png)
-
-### 6. Supplementary Analysis (Heatmaps & Ablations)
-Additional figures are available in the [Diagrams/](file:///c:/Users/Imam%20Ud%20Doula/Desktop/Canadian%20University%20of%20Bangladesh/Research/Paper%201.5/V04/Diagrams) directory:
-* **[Robustness Indexes](file:///c:/Users/Imam%20Ud%20Doula/Desktop/Canadian%20University%20of%20Bangladesh/Research/Paper%201.5/V04/Diagrams/KPIHeatmap_Robustness_index_Hybrid_controller_Profile.png)**: Visualizes sensitivity analyses of Lyapunov parameters and blending limits on control performance.
-* **[Ablation Studies](file:///c:/Users/Imam%20Ud%20Doula/Desktop/Canadian%20University%20of%20Bangladesh/Research/Paper%201.5/V04/Diagrams/New%20Diagrams/KPI_ablation.png)**: Deep dive into the influence of individual controller components on overall savings and stabilization.
-* **[Thermal vs Compute Trade-offs](file:///c:/Users/Imam%20Ud%20Doula/Desktop/Canadian%20University%20of%20Bangladesh/Research/Paper%201.5/V04/Diagrams/KPI_Temperature_ComputeTime.png)**: Explores computation execution costs versus thermal safety limits.
+The framework evaluates controllers over a continuous multi-hour simulation window under FDI attacks and records the following metrics:
+* **Energy Consumption (kWh)**: Total electricity consumed by the chilled air fan and cooling system.
+* **Operational Cost ($)**: Real-time monetary expenditure computed using fluctuating hourly grid electricity prices.
+* **Scope 2 Carbon (kg CO₂)**: Environmental footprint tracking carbon emissions based on dynamic grid carbon intensity.
+* **Lyapunov Stability $\langle V(T) \rangle$**: Average Lyapunov energy to evaluate temperature convergence and feedback loop stability under stress.
+* **Average Temperature & Std. Dev. (°C)**: Thermal performance indices to measure temperature deviation and control variance in each zone.
+* **Computation Time (s)**: Processing overhead for solving optimization objectives at each simulation time step.
 
 ---
 
@@ -219,25 +175,14 @@ Inputs to the Bidirectional LSTM model are structured as time series sequences:
 ## 📂 Repository Structure
 
 ```
-├── figures/                                    # Publication-quality (300 DPI) plots
-│   ├── forecast_vs_actual_temp.png            # Bi-LSTM forecasting validation
-│   ├── kpi_tri_objective_comparison.png       # Energy, cost, carbon comparison
-│   ├── kpi_weights_and_interdependency.png    # Weighting strategy and correlations
-│   ├── lyapunov_stability_evolution.png       # Lyapunov stability metrics
-│   └── temperature_trajectories.png           # Multi-zone thermal trajectories
-│
-├── Diagrams/                                   # Supplementary analyses & ablation charts
-│   ├── New Diagrams/                           # IEEE-formatted subplots
-│   │   ├── KPI_ablation.png                    # Ablation KPIs
-│   │   ├── LSTM_evaluation.png                 # Forecast MSE details
-│   │   └── temp_trajectory_all_controllers.png  # Multi-controller trajectories
-│   └── ...
-│
-├── Data_Center_Cooling_Benchmarks.ipynb        # Comprehensive benchmarking notebook
+├── Data_Center_Cooling_Benchmarks.ipynb        # Clean benchmarking notebook (run to generate results)
 ├── LICENSE                                     # MIT License
 ├── README.md                                   # Repository documentation
 └── .gitignore                                  # Git ignore list
 ```
+
+> [!NOTE]
+> Running the Jupyter notebook local or in Colab executes the entire benchmarking pipeline and generates the performance tables and figures (saving them locally in the workspace).
 
 ---
 
@@ -277,7 +222,7 @@ Or execute it in Google Colab (by clicking the badge at the top). Run all cells 
 3. Train the Bidirectional LSTM forecaster model.
 4. Execute the 7-day multi-zone digital twin simulation under cyber-physical attacks.
 5. Compile and export the raw raw and normalized KPI metrics.
-6. Generate and save all 300 DPI publication plots.
+6. Generate and save all publication plots.
 
 ---
 

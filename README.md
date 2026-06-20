@@ -121,6 +121,7 @@ Generates 24-hour historical windows with 6-hour prediction horizons, applying a
 
 ```
 ├── Data_Center_Cooling_Benchmarks.ipynb        # Clean benchmarking notebook (run to generate results)
+├── Data_Center_Cooling_Benchmarks_V02.ipynb 
 ├── LICENSE                                     # MIT License
 ├── README.md                                   # Repository documentation
 └── .gitignore                                  # Git ignore list
@@ -159,7 +160,7 @@ The simulation runs on real-world energy, weather, and grid telemetry. The noteb
 ### 4. Running the Benchmarks
 Open the Jupyter notebook locally:
 ```bash
-jupyter notebook Data_Center_Cooling_Benchmarks.ipynb
+jupyter notebook Data_Center_Cooling_Benchmarks_V02.ipynb
 ```
 Or execute it in Google Colab (by clicking the badge at the top). Run all cells sequentially to:
 1. Initialize the dataset paths and download Kaggle CSVs.
